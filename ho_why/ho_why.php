@@ -66,6 +66,7 @@ class Ho_why extends Module {
     }
 
     // Editar card
+    $output = '';
     if ($idEdit = Tools::getValue('edit')) {
       foreach ($cards as $card) {
         if ($card['id'] === $idEdit) {
@@ -267,11 +268,7 @@ class Ho_why extends Module {
   }
 
   // ====================== Funciones para JSON ======================
-
-  private function getJsonFilePath(){
-    return _PS_MODULE_DIR_.$this->name.'/data/cards.json';
-  }
-
+  
   // Leer cards desde JSON
   private function readCards(){
     $json = Configuration::get('HO_WHY_CARDS'); // Cards almacenadas en configuración
