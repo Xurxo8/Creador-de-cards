@@ -24,19 +24,16 @@
 *}
 
 {* === Template de administración del módulo === *}
-
 <div class="panel">
   <h3>
-    <i class="icon icon-tags"></i>
-    {l s='Administración de "¿Por qué comprar en Hardware Online?"' mod='ho_why'}
+    {l s='Lista de tarjetas' mod='ho_why'}
   </h3>
-  <p>{l s='Desde aquí puedes añadir, modificar o eliminar las tarjetas de la sección.' mod='ho_why'}</p>
 
   {if $cards|@count > 0}
     {foreach from=$cards item=card}
       <div class="card-item" style="border:1px solid #ccc; padding:10px; margin-bottom:10px;">
-        <strong>{$card.name}</strong>
-        <p>{$card.description}</p>
+        <h2 style="margin: 5px;"><strong>{$card.name}</strong></h2>
+        <h3 style="margin: 5px;">{$card.description}</h3>
 
         {if $card.image}
           <img src="{$module_dir}views/img/{$card.image}"
@@ -44,14 +41,15 @@
                alt="Imagen">
         {/if}
 
-        <div class="btn-group">
+        <div class="btn-group-lg">
           {* Botón Editar *}
-          <a href="{$current}&edit={$card.id}" class="btn btn-default btn-sm">
+          <a href="{$current}&edit={$card.id}&token={$token}" class="btn btn-default btn-sm"
+            class="btn btn-sm">
             <i class="icon-pencil"></i> {l s='Editar' mod='ho_why'}
           </a>
 
           {* Botón Borrar *}
-          <a href="{$current}&delete={$card.id}"
+          <a href="{$current}&delete={$card.id}&token={$token}"
              class="btn btn-danger btn-sm"
              onclick="return confirm('{l s='¿Seguro que quieres eliminar esta tarjeta?' mod='ho_why'}');">
             <i class="icon-trash"></i> {l s='Eliminar' mod='ho_why'}

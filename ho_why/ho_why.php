@@ -66,21 +66,6 @@ class Ho_why extends Module {
       $this->postProcess();
     }
 
-    // Leer todas las cards existentes
-    $cards = $this->readCards();
-
-    // Asignar variables a Smarty para plantilla
-    $this->context->smarty->assign([
-      'module_dir' => $this->_path,
-      'cards' => $cards,
-      'current' => $this->context->link->getAdminLink('AdminModules', false)
-        .'&configure='.$this->name,
-    ]);
-
-    // Mostrar mensajes y plantilla
-    $output = $this->_html;
-    $output .= $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
-
     // Editar card
     if ($idEdit = Tools::getValue('edit')) {
       foreach ($cards as $card) {
@@ -91,8 +76,29 @@ class Ho_why extends Module {
       }
     }
 
-    // Mostrar formulario vacío para añadir nuevas cards
+    // Mostrar mensajes de confirmación/error
+    $output = $this->_html;
+
+    // Renderizar formulario
     $output .= $this->renderForm();
+
+    // Leer todas las cards existentes
+    $cards = $this->readCards();
+
+    // Creamos el token de seguridad
+    $token = Tools::getAdminTokenLite('AdminModules');
+
+    // Asignar variables a Smarty para plantilla
+    $this->context->smarty->assign([
+      'module_dir' => $this->_path,
+      'cards' => $cards,
+      'current' => $this->context->link->getAdminLink('AdminModules', false)
+        .'&configure='.$this->name,
+      'token' => $token,
+    ]);
+
+    // Renderizar y añadir la plantilla con la lista de cards
+    $output .= $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
 
     return $output;
   }
@@ -144,6 +150,11 @@ class Ho_why extends Module {
   protected function getConfigForm()  {
     return [
       'form' => [
+        'legend' => [
+          'title' => $this->l('Administracion de cards'),
+          'icon' => 'icon-cogs', // Icono opcional
+        ],
+        'description' => $this->l('Desde aquí puedes añadir, modificar o eliminar los datos de las tarjetas.'),
         'input' => [
           [
             'type' => 'hidden',
@@ -152,19 +163,19 @@ class Ho_why extends Module {
           [
             'type' => 'text',
             'name' => 'HO_WHY_IMG_NAME',
-            'label' => $this->l('Nombre imagen'),
+            'label' => $this->l('Nombre:'),
             'col' => 2
           ],
           [
             'type' => 'text',
             'name' => 'HO_WHY_DESCRIPCION_NAME',
-            'label' => $this->l('Texto descripción'),
+            'label' => $this->l('Texto descripción:'),
             'col' => 3
           ],
           [
             'type' => 'file',
             'name' => 'HO_WHY_IMG_FILE',
-            'label' => $this->l('Subir imagen'),
+            'label' => $this->l('Subir imagen (solo SVG):'),
           ],
         ],
         'submit' => [

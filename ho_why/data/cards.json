@@ -1,14 +1,8 @@
 [
     {
-        "id": "68efcdc0940c4",
-        "name": "Manolo",
-        "description": "Accede aqui a tu cuenta de usuario",
-        "image": "68f0fe9ed9ccb-68efcdc093ccf-circle-user-solid-full.svg"
-    },
-    {
-        "id": "68f1022ccad3f",
-        "name": "Envio",
-        "description": "Envio 24h",
-        "image": "68f102476ef46-desistimiento.svg"
+        "id": "68f106e7a5d76",
+        "name": "Usuario",
+        "description": "Icono de usuario",
+        "image": "68f10c26bd5c7-usuario.svg"
     }
 ]
