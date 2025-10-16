@@ -22,14 +22,13 @@ class Ho_why extends Module {
 
     $this->displayName = $this->l('HoWhy'); // Nombre visible en el BO
     $this->description = $this->l('Razones para comprar en Hardware Online');
-    $this->ps_versions_compliancy = ['min' => '1.6', 'max' => '9.0'];
+    $this->ps_versions_compliancy = ['min' => '8.0', 'max' => '9.0'];
   }
 
   /**
    * Instalación del módulo
    */
-  public function install()
-  {
+  public function install(){
     // Valor por defecto de configuración
     Configuration::updateValue('HO_WHY_LIVE_MODE', false);
 
@@ -44,7 +43,7 @@ class Ho_why extends Module {
    * Desinstalación del módulo
    */
   public function uninstall(){
-    Configuration::deleteByName('HO_WHY_LIVE_MODE');
+    Configuration::deleteByName('HO_WHY_CARDS'); // limpiar al desisntalar el módulo
     return parent::uninstall();
   }
 
@@ -273,17 +272,15 @@ class Ho_why extends Module {
     return _PS_MODULE_DIR_.$this->name.'/data/cards.json';
   }
 
+  // Leer cards desde JSON
   private function readCards(){
-    $file = $this->getJsonFilePath();
-    if (!file_exists($file)) return [];
-    $json = file_get_contents($file);
-    return json_decode($json, true) ?: [];
+    $json = Configuration::get('HO_WHY_CARDS'); // Cards almacenadas en configuración
+    return $json ? json_decode($json, true) : [];
   }
 
+  // Guardar cards en JSON
   private function saveCards(array $cards){
-    $file = $this->getJsonFilePath();
-    if (!file_exists(dirname($file))) mkdir(dirname($file), 0755, true);
-    file_put_contents($file, json_encode($cards, JSON_PRETTY_PRINT));
+    Configuration::updateValue('HO_WHY_CARDS', json_encode($cards, JSON_PRETTY_PRINT));
   }
 
   // ====================== Hooks ======================
