@@ -277,16 +277,14 @@ class Ho_why extends Module {
 
   // ====================== Hooks ======================
 
-  public function hookDisplayBackOfficeHeader()
-  {
+  public function hookDisplayBackOfficeHeader(){
     if (Tools::getValue('configure') == $this->name) {
       $this->context->controller->addJS($this->_path.'views/js/back.js');
       $this->context->controller->addCSS($this->_path.'views/css/back.css');
     }
   }
 
-  public function hookHeader()
-  {
+  public function hookHeader(){
     $this->context->controller->addJS($this->_path.'views/js/front.js');
     $this->context->controller->addCSS($this->_path.'views/css/front.css');
 

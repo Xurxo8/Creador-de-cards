@@ -25,3 +25,10 @@
 * Don't forget to prefix your containers with your own identifier
 * to avoid any conflicts with others containers.
 */
+
+.card-item img {
+  background-color: #e6e6e6;
+  border-radius: 6px;
+  padding: 6px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.1);
+}
