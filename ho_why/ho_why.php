@@ -151,7 +151,7 @@ class Ho_why extends Module {
     return [
       'form' => [
         'legend' => [
-          'title' => $this->l('Administracion de cards'),
+          'title' => $this->l('Administración de tarjetas'),
           'icon' => 'icon-cogs', // Icono opcional
         ],
         'description' => $this->l('Desde aquí puedes añadir, modificar o eliminar los datos de las tarjetas.'),
@@ -306,6 +306,7 @@ class Ho_why extends Module {
     );
   }
 
+  // Cargar datos desde JSON y pasarlos a la plantilla
   public function hookDisplayHome(){
     $cards = $this->readCards();
     $this->context->smarty->assign(['reasons' => $cards]);

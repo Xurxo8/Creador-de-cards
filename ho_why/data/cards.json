@@ -1,8 +1,38 @@
 [
     {
-        "id": "68f106e7a5d76",
-        "name": "Usuario",
-        "description": "Icono de usuario",
-        "image": "68f10c26bd5c7-usuario.svg"
+        "id": "68f117d238424",
+        "name": "Atencion",
+        "description": "Atencion telefonica",
+        "image": "68f117faa5baf-Telefono.svg"
+    },
+    {
+        "id": "68f1180e599f4",
+        "name": "Envio",
+        "description": "Env\u00edo 24h",
+        "image": "68f1180e5970d-envio.svg"
+    },
+    {
+        "id": "68f11827e9f65",
+        "name": "Garantia",
+        "description": "3 anos de garantia",
+        "image": "68f11827e9df3-garantia.svg"
+    },
+    {
+        "id": "68f1183d6a4e9",
+        "name": "Asegurado",
+        "description": "Env\u00edo asegurado",
+        "image": "68f1183d6a1ed-asegurado.svg"
+    },
+    {
+        "id": "68f1186ee1167",
+        "name": "desistimiento",
+        "description": "14 d\u00edas de desistimiento.svg",
+        "image": "68f1186ee0dc7-desistimiento.svg"
+    },
+    {
+        "id": "68f118a919540",
+        "name": "Financiacion",
+        "description": "Financiacion flexible",
+        "image": "68f118a9193c8-financiacion.svg"
     }
 ]
